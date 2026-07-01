@@ -15,21 +15,44 @@ DOWNLOAD
 <p id="msg"></p>
 
 <script>
-function download(){
+async function download(){
 
-let url = document.getElementById("url").value;
+let url=document.getElementById("url").value;
+let msg=document.getElementById("msg");
 
 if(!url){
-document.getElementById("msg").innerHTML="Enter URL";
+msg.innerHTML="Enter link";
 return;
 }
 
-document.getElementById("msg").innerHTML="Processing...";
+msg.innerHTML="Downloading...";
 
-window.open(
-"https://www.instagram.com/",
-"_blank"
-);
+try{
+
+let res=await fetch("http://192.168.8.100:5000/download",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+url:url
+})
+});
+
+let blob=await res.blob();
+
+let a=document.createElement("a");
+a.href=URL.createObjectURL(blob);
+a.download="instagram.mp4";
+a.click();
+
+msg.innerHTML="Done";
+
+}catch(e){
+
+msg.innerHTML="Error";
+
+}
 
 }
 </script>
