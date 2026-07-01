@@ -1,13 +1,12 @@
 name: Build APK
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - main
 
 jobs:
-  android:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,25 +16,18 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
-          distribution: temurin
-          java-version: 21
+          java-version: '17'
+          distribution: 'temurin'
 
-      - name: Setup Android
+      - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Install SDK
-        run: sdkmanager "platforms;android-36" "build-tools;35.0.0"
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: Install npm
+      - name: Install dependencies
         run: npm install
 
-      - name: Capacitor Sync
-        run: npx cap sync android
+      - name: Build Capacitor
+        run: |
+          npx cap sync android
 
       - name: Build APK
         run: |
@@ -46,5 +38,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Linux-Insta-Downloader
+          name: app-debug
           path: android/app/build/outputs/apk/debug/app-debug.apk
