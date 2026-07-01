@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Linux Insta Downloader</string>
+    <string name="title_activity_main">Linux Insta Downloader</string>
+    <string name="package_name">com.linux.instdownloader</string>
+    <string name="custom_url_scheme">com.linux.instdownloader</string>
+</resources>

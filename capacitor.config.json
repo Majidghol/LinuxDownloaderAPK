@@ -1,0 +1,6 @@
+{
+  "appId": "com.linux.instdownloader",
+  "appName": "Linux Insta Downloader",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}
