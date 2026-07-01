@@ -4,13 +4,35 @@
 
 <h1>🐧 Linux Insta Downloader</h1>
 
-<input placeholder="Instagram URL" style="padding:15px">
+<input id="url" placeholder="Instagram URL" style="padding:15px;width:80%">
 
 <br><br>
 
-<button style="padding:15px">
+<button onclick="download()" style="padding:15px">
 DOWNLOAD
 </button>
+
+<p id="msg"></p>
+
+<script>
+function download(){
+
+let url = document.getElementById("url").value;
+
+if(!url){
+document.getElementById("msg").innerHTML="Enter URL";
+return;
+}
+
+document.getElementById("msg").innerHTML="Processing...";
+
+window.open(
+"https://www.instagram.com/",
+"_blank"
+);
+
+}
+</script>
 
 </body>
 </html>
